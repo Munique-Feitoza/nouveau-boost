@@ -17,18 +17,35 @@ You **do not need to know Linux commands or kernel internals**. `nouveau-boost` 
 
 ---
 
-## 🚀 One-Command Install
+## 🚀 Installation (All Linux Distributions)
 
-Copy and paste this into your terminal:
+### Option 1: Debian, Ubuntu, Linux Mint, Pop!_OS (`.deb` Package)
+Download and install the latest `.deb` package with one command:
+```bash
+curl -sLO https://github.com/Munique-Feitoza/nouveau-boost/releases/latest/download/nouveau-boost_0.1.0-1_amd64.deb
+sudo apt install ./nouveau-boost_0.1.0-1_amd64.deb
+```
 
+### Option 2: Fedora, RHEL, openSUSE (`.rpm` Package)
+```bash
+sudo dnf install https://github.com/Munique-Feitoza/nouveau-boost/releases/latest/download/nouveau-boost-0.1.0-1.x86_64.rpm
+```
+
+### Option 3: Arch Linux & Manjaro (`makepkg` / `PKGBUILD`)
+```bash
+git clone https://github.com/Munique-Feitoza/nouveau-boost.git
+cd nouveau-boost
+makepkg -si
+```
+
+### Option 4: Universal One-Command Installer (Any Linux)
 ```bash
 git clone https://github.com/Munique-Feitoza/nouveau-boost.git
 cd nouveau-boost
 bash install.sh
 ```
 
-Once installed, you can open **Nouveau-Boost** directly from your **Linux Application Menu** (search for *Nouveau-Boost*) or by typing:
-
+Once installed, open **Nouveau-Boost** directly from your **Linux Application Menu** (search for *Nouveau-Boost*) or run:
 ```bash
 nouveau-boost
 ```

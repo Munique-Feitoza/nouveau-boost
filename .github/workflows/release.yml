@@ -44,3 +44,13 @@ jobs:
             target/debian/*.deb
             target/generate-rpm/*.rpm
             nouveau-boost-linux-x86_64.tar.gz
+
+      - name: Trigger OpenBuildService (OBS) Build for home:nitroglicerina
+        if: env.OBS_TOKEN != ''
+        env:
+          OBS_TOKEN: ${{ secrets.OBS_TOKEN }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Token ${OBS_TOKEN}" \
+            "https://api.opensuse.org/trigger/runservice?project=home:nitroglicerina&package=nouveau-boost" || true
+
