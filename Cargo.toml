@@ -6,7 +6,32 @@ authors = ["Munique Feitoza"]
 description = "One-click auto-healer, video freeze fixer, and performance tuner for legacy NVIDIA GPUs on Linux (Nouveau DRM)."
 license = "GPL-2.0-only"
 repository = "https://github.com/Munique-Feitoza/nouveau-boost"
+homepage = "https://github.com/Munique-Feitoza/nouveau-boost"
+readme = "README.md"
+keywords = ["nvidia", "nouveau", "linux", "gpu", "tui"]
+categories = ["command-line-utilities", "hardware-support", "os::linux-apis"]
 
 [dependencies]
 ratatui = "0.28"
 crossterm = "0.28"
+
+[package.metadata.deb]
+maintainer = "Munique Feitoza"
+copyright = "2026, Munique Feitoza"
+license-file = ["LICENSE", "0"]
+extended-description = """\
+One-click video freeze fixer, plain-English health doctor, and performance \
+tuner for legacy NVIDIA GPUs on Linux running the Nouveau DRM driver."""
+depends = "$auto, systemd"
+section = "utils"
+priority = "optional"
+assets = [
+    ["target/release/nouveau-boost", "usr/bin/", "755"],
+    ["README.md", "usr/share/doc/nouveau-boost/README", "644"],
+]
+
+[package.metadata.generate-rpm]
+assets = [
+    { source = "target/release/nouveau-boost", dest = "/usr/bin/nouveau-boost", mode = "755" },
+    { source = "README.md", dest = "/usr/share/doc/nouveau-boost/README.md", mode = "644", doc = true },
+]

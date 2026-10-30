@@ -1,0 +1,46 @@
+name: Release Linux Packages (.deb, .rpm, Arch, Binary)
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain & packaging tools
+        run: |
+          rustup default stable
+          cargo install cargo-deb cargo-generate-rpm
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Build Debian/Ubuntu (.deb) package
+        run: cargo deb
+
+      - name: Build Fedora/RHEL (.rpm) package
+        run: |
+          strip -s target/release/nouveau-boost
+          cargo generate-rpm
+
+      - name: Package portable Linux x86_64 tarball
+        run: |
+          tar -czvf nouveau-boost-linux-x86_64.tar.gz -C target/release nouveau-boost -C ../.. LICENSE README.md install.sh
+
+      - name: Upload Release Assets (.deb, .rpm, .tar.gz)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            target/debian/*.deb
+            target/generate-rpm/*.rpm
+            nouveau-boost-linux-x86_64.tar.gz

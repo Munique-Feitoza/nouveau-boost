@@ -1,0 +1,18 @@
+pkgbase = nouveau-boost
+	pkgdesc = One-click video freeze fixer, plain-English health doctor, and performance tuner for legacy NVIDIA GPUs on Linux (Nouveau DRM)
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/Munique-Feitoza/nouveau-boost
+	arch = x86_64
+	arch = aarch64
+	license = GPL-2.0-only
+	makedepends = cargo
+	makedepends = git
+	depends = gcc-libs
+	depends = glibc
+	depends = systemd
+	optdepends = nouveau-fw: NVIDIA Falcon video microcode for hardware VA-API decoding
+	source = nouveau-boost-0.1.0::git+https://github.com/Munique-Feitoza/nouveau-boost.git#branch=main
+	sha256sums = SKIP
+
+pkgname = nouveau-boost
