@@ -1,0 +1,12 @@
+[package]
+name = "nouveau-boost"
+version = "0.1.0"
+edition = "2021"
+authors = ["Munique Feitoza"]
+description = "One-click auto-healer, video freeze fixer, and performance tuner for legacy NVIDIA GPUs on Linux (Nouveau DRM)."
+license = "GPL-2.0-only"
+repository = "https://github.com/Munique-Feitoza/nouveau-boost"
+
+[dependencies]
+ratatui = "0.28"
+crossterm = "0.28"
